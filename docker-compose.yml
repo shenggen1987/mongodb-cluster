@@ -1,0 +1,44 @@
+version: "3"
+services:
+  mongo-1:
+    image: mongo-replset
+    hostname: mongo-1
+    restart: always
+    ports:
+      - 27011:27011
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123
+    command:
+      - --port
+      - "27011"
+      - --replSet
+      - rs
+      - --keyFile
+      - /app/auth.key
+  mongo-2:
+    image: mongo-replset
+    hostname: mongo-2
+    restart: always
+    ports:
+      - 27012:27012
+    command:
+      - --port
+      - "27012"
+      - --replSet
+      - rs
+      - --keyFile
+      - /app/auth.key
+  mongo-3:
+    image: mongo-replset
+    hostname: mongo-3
+    restart: always
+    ports:
+      - 27013:27013
+    command:
+      - --port
+      - "27013"
+      - --replSet
+      - rs
+      - --keyFile
+      - /app/auth.key
